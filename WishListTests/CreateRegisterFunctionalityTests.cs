@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -151,7 +152,7 @@ namespace WishListTests
             var claimsFactory = new Mock<IUserClaimsPrincipalFactory<ApplicationUser>>();
             var userManager = new Mock<UserManager<ApplicationUser>>(userStore.Object, null, null, null, null, null, null, null, null);
             userManager.Setup(e => e.CreateAsync(It.IsAny<ApplicationUser>(), "success")).ReturnsAsync(IdentityResult.Success);
-            var signInManager = new Mock<SignInManager<ApplicationUser>>(userManager.Object, contextAccessor.Object, claimsFactory.Object, null, null, null);
+            var signInManager = new Mock<SignInManager<ApplicationUser>>(userManager.Object, contextAccessor.Object, claimsFactory.Object, null, null, null, null);
             var controller = Activator.CreateInstance(accountController, new object[] { userManager.Object, signInManager.Object });
             var model = Activator.CreateInstance(registerViewModel, null);
             registerViewModel.GetProperty("Email").SetValue(model, "Test@Test.com");
@@ -185,7 +186,7 @@ namespace WishListTests
             var userManager = new Mock<UserManager<ApplicationUser>>(userStore.Object, null, null, null, null, null, null, null, null);
             userManager.Setup(e => e.CreateAsync(It.IsAny<ApplicationUser>(), "success")).ReturnsAsync(IdentityResult.Success).Verifiable();
             userManager.Setup(e => e.CreateAsync(It.IsAny<ApplicationUser>(), "failure")).ReturnsAsync(IdentityResult.Failed(new IdentityError[] { new IdentityError { Code = string.Empty, Description = "Bad Password" } }));
-            var signInManager = new Mock<SignInManager<ApplicationUser>>(userManager.Object, contextAccessor.Object, claimsFactory.Object, null, null, null);
+            var signInManager = new Mock<SignInManager<ApplicationUser>>(userManager.Object, contextAccessor.Object, claimsFactory.Object, null, null, null, null);
             var controller = Activator.CreateInstance(accountController, new object[] { userManager.Object, signInManager.Object });
             var model = Activator.CreateInstance(registerViewModel, null);
             registerViewModel.GetProperty("Email").SetValue(model, "Test@Test.com");
@@ -233,7 +234,7 @@ namespace WishListTests
             var userManager = new Mock<UserManager<ApplicationUser>>(userStore.Object, null, null, null, null, null, null, null, null);
             userManager.Setup(e => e.CreateAsync(It.IsAny<ApplicationUser>(), "success")).ReturnsAsync(IdentityResult.Success).Verifiable();
             userManager.Setup(e => e.CreateAsync(It.IsAny<ApplicationUser>(), "failure")).ReturnsAsync(IdentityResult.Failed(new IdentityError[] { new IdentityError { Code = string.Empty, Description = "Bad Password" } }));
-            var signInManager = new Mock<SignInManager<ApplicationUser>>(userManager.Object, contextAccessor.Object, claimsFactory.Object, null, null, null);
+            var signInManager = new Mock<SignInManager<ApplicationUser>>(userManager.Object, contextAccessor.Object, claimsFactory.Object, null, null, null, null);
             var controller = Activator.CreateInstance(accountController, new object[] { userManager.Object, signInManager.Object });
             var model = Activator.CreateInstance(registerViewModel, null);
             registerViewModel.GetProperty("Email").SetValue(model, "Test@Test.com");
@@ -289,7 +290,7 @@ namespace WishListTests
             var userManager = new Mock<UserManager<ApplicationUser>>(userStore.Object, null, null, null, null, null, null, null, null);
             userManager.Setup(e => e.CreateAsync(It.IsAny<ApplicationUser>(), "success")).ReturnsAsync(IdentityResult.Success).Verifiable();
             userManager.Setup(e => e.CreateAsync(It.IsAny<ApplicationUser>(), "failure")).ReturnsAsync(IdentityResult.Failed(new IdentityError[] { new IdentityError { Code = string.Empty, Description = "Bad Password" } }));
-            var signInManager = new Mock<SignInManager<ApplicationUser>>(userManager.Object, contextAccessor.Object, claimsFactory.Object, null, null, null);
+            var signInManager = new Mock<SignInManager<ApplicationUser>>(userManager.Object, contextAccessor.Object, claimsFactory.Object, null, null, null, null);
             var controller = Activator.CreateInstance(accountController, new object[] { userManager.Object, signInManager.Object });
             var model = Activator.CreateInstance(registerViewModel, null);
             registerViewModel.GetProperty("Email").SetValue(model, "Test@Test.com");
