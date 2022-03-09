@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Text.RegularExpressions;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using WishList.Data;
 using WishList.Models;
 using Xunit;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace WishListTests
 {

@@ -71,7 +71,7 @@ namespace WishListTests
             var contextAccessor = new Mock<IHttpContextAccessor>();
             var claimsFactory = new Mock<IUserClaimsPrincipalFactory<ApplicationUser>>();
             var userManager = new UserManager<ApplicationUser>(userStore.Object, null, null, null, null, null, null, null, null);
-            var signInManager = new SignInManager<ApplicationUser>(userManager, contextAccessor.Object, claimsFactory.Object, null, null, null);
+            var signInManager = new SignInManager<ApplicationUser>(userManager, contextAccessor.Object, claimsFactory.Object, null, null, null, null);
             var controller = Activator.CreateInstance(accountController, new object[] { userManager, signInManager });
             var results = method.Invoke(controller, null) as ViewResult;
             Assert.True(results != null, "`AccountController`'s HttpGet `Login` action did not return a the `Login` view.");
